@@ -20,12 +20,12 @@ const genCompChoice = () => {
   const randIdx = Math.floor(Math.random() *3);
   return options[randIdx];
 };
-const showWinner =(userWin)=>{
+const showWinner =(userWin,compChoice)=>{
   if(userWin){
     userScore++;
     userScorePara.innerText=userScore;
     console.log("you win");
-    msg.innerText="You Win!";
+    msg.innerText=`You Win!...[computer choice was ${compChoice}]`;
     msg.style.backgroundColor="green";
     msg.style.color="white";
 
@@ -35,16 +35,16 @@ const showWinner =(userWin)=>{
     compScore++;
     compScorePara.innerText=compScore;
     console.log("you lose");
-    msg.innerText="Oops you lose";
+    msg.innerText=`Oops you lose...[computer choice was ${compChoice} ]`;
         msg.style.backgroundColor="red";
     msg.style.color="white";
 
   }
 };
 
-const drawGame = () =>{
+const drawGame = (compChoice) =>{
   console.log("draw");
-  msg.innerText="It's a draw play again...";
+  msg.innerText=`It's a draw play again...[computer choice was ${compChoice}]`;
   msg.style.backgroundColor="antiquewhite";
     msg.style.color="rgb(91, 12, 164)";
 };
@@ -59,7 +59,7 @@ const playGame = (userChoiceRaw) =>{
   console.log("computer choice=", compChoice);
 
   if (userChoice.trim().toLowerCase() === compChoice.trim().toLowerCase()) {
-  drawGame();
+  drawGame(compChoice);
 } else {
   let userWin=true;
   if(userChoice === "rock"){
@@ -75,7 +75,7 @@ const playGame = (userChoiceRaw) =>{
     //c choice rock ,paper
     userWin=compChoice ==="rock" ? false:true;
   }
-  showWinner(userWin);
+  showWinner(userWin,compChoice);
 }
 };
 
